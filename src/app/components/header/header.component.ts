@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -11,24 +11,7 @@ export class HeaderComponent implements OnInit {
 
   collapsed = true;
 
-  @Output() showComponent = new EventEmitter<string>();
-
   ngOnInit(): void {
 
-  }
-
-  // onChooseComponent() {
-  //   this.showComponent.emit(
-  //     {
-  //       recipeIsVisible: this.showRecipe,
-  //       shoppingListIsVisible: this.showShoppingList
-  //     });
-  // }
-
-
-
-
-  onSelect(feature: string) {
-    this.showComponent.emit(feature);
   }
 }
