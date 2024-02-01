@@ -9,12 +9,13 @@ import { RecipeDetailsComponent } from './components/recipes/recipe-details/reci
 import { RecipeItemComponent } from './components/recipes/recipe-list/recipe-item/recipe-item.component';
 import { RecipeListComponent } from './components/recipes/recipe-list/recipe-list.component';
 import { RecipesComponent } from './components/recipes/recipes.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownDirective } from './shared-models/dropdown.directive';
 import { ShoppingListService } from './components/shopping-list/shopping-list.service';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './components/recipes/recipe-start/recipe-start.component';
 import { RecipesEditComponent } from './components/recipes/recipes-edit/recipes-edit.component';
+import { RecipeService } from './components/recipes/recipe.service';
 
 
 
@@ -36,9 +37,13 @@ import { RecipesEditComponent } from './components/recipes/recipes-edit/recipes-
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [ShoppingListService],
+  providers: [
+    ShoppingListService, 
+    RecipeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
