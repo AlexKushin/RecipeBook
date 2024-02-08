@@ -50,4 +50,8 @@ export class AuthComponent {
     authForm.reset();
   }
 
+  handleError(){
+    this.error = null;
+  }
+
 }
