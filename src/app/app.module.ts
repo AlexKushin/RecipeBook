@@ -1,36 +1,32 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core.module';
+import { AuthModule } from './components/auth/auth.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
-import { ShoppingListEditComponent } from './components/shopping-list/shopping-list-edit/shopping-list-edit.component';
-import { RecipeDetailsComponent } from './components/recipes/recipe-details/recipe-details.component';
-import { RecipeItemComponent } from './components/recipes/recipe-list/recipe-item/recipe-item.component';
-import { RecipeListComponent } from './components/recipes/recipe-list/recipe-list.component';
-import { RecipesComponent } from './components/recipes/recipes.component';
-import { FormsModule } from '@angular/forms';
-import { DropdownDirective } from './shared-models/dropdown.directive';
+
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    ShoppingListComponent,
-    ShoppingListEditComponent,
-    RecipeDetailsComponent,
-    RecipeItemComponent,
-    RecipeListComponent,
-    RecipesComponent,
-    DropdownDirective
-   
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule
-  ],
-  providers: [],
+  declarations:
+    [
+      AppComponent,
+      HeaderComponent,
+    ],
+  imports:
+    [
+      BrowserModule,
+      AppRoutingModule,
+      HttpClientModule,
+      SharedModule,
+      CoreModule,
+      AuthModule
+    ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,34 +1,45 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { DataStorageService } from '../../shared/data-storage.service';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
+  userSub: Subscription;
+  isAuthenticated = false;
 
-  constructor() { }
+  constructor(private dataStorageService: DataStorageService, private authService: AuthService) { }
+
 
   collapsed = true;
 
-  @Output() showComponent = new EventEmitter<string>();
-
   ngOnInit(): void {
-
+    this.userSub = this.authService.user.subscribe(
+      user => {
+        this.isAuthenticated = !user ? false : true   //or we can use syntax -> !!user
+        console.log(!user);
+        console.log(!!user);
+      }
+    )
   }
 
-  // onChooseComponent() {
-  //   this.showComponent.emit(
-  //     {
-  //       recipeIsVisible: this.showRecipe,
-  //       shoppingListIsVisible: this.showShoppingList
-  //     });
-  // }
+  onSaveData() {
+    this.dataStorageService.storeRecipes();
+  }
 
+  onFetchData() {
+    this.dataStorageService.fetchRecipes().subscribe();
+  }
 
+  onLogout() {
+    this.authService.logout();
+  }
 
-
-  onSelect(feature: string) {
-    this.showComponent.emit(feature);
+  ngOnDestroy() {
+    this.userSub.unsubscribe();
   }
 }
