@@ -8,6 +8,8 @@ import { AuthModule } from './components/auth/auth.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
+import { StoreModule } from '@ngrx/store';
+import { shoppingListReducer } from './components/shopping-list/store/shopping-list.reducer';
 
 
 
@@ -24,7 +26,8 @@ import { HeaderComponent } from './components/header/header.component';
       HttpClientModule,
       SharedModule,
       CoreModule,
-      AuthModule
+      AuthModule,
+      StoreModule.forRoot({shoppingList: shoppingListReducer})
     ],
 
   bootstrap: [AppComponent]
