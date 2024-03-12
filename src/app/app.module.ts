@@ -27,7 +27,7 @@ import { shoppingListReducer } from './components/shopping-list/store/shopping-l
       SharedModule,
       CoreModule,
       AuthModule,
-      StoreModule.forRoot({shoppingList: shoppingListReducer})
+      StoreModule.forRoot({shoppingList: shoppingListReducer}) //here we tell to ngrx which reducers we have in our application
     ],
 
   bootstrap: [AppComponent]
