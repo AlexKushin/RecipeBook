@@ -7,8 +7,8 @@ import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 const appRoutes: Routes =
     [
         { path: '', redirectTo: '/recipes', pathMatch: 'full' },
-        { path: 'recipes', loadChildren: () => import('./components/recipes/recipes.module').then(m => m.RecipesModule) },
-        { path: 'shopping-list', loadChildren: () => import('./components/shopping-list/shopping-list.module').then(m => m.ShoppingListModule) }
+        { path: 'recipes', loadChildren: () => import('./recipes/recipes.module').then(m => m.RecipesModule) },
+        { path: 'shopping-list', loadChildren: () => import('./shopping-list/shopping-list.module').then(m => m.ShoppingListModule) }
     ]
 
 
