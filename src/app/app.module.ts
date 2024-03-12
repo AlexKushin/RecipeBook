@@ -9,8 +9,9 @@ import { AuthModule } from './auth/auth.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { StoreModule } from '@ngrx/store';
-import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
-import { authReducer } from './auth/store/auth.reducer';
+//import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
+//import { authReducer } from './auth/store/auth.reducer';
+import * as fromApp from './store/app.reducer'
 
 
 
@@ -29,12 +30,13 @@ import { authReducer } from './auth/store/auth.reducer';
       SharedModule,
       CoreModule,
       AuthModule,
-      StoreModule.forRoot(//here we tell to ngrx which reducers we have in our application
-        {
-          shoppingList: shoppingListReducer,
-          auth: authReducer
-        }
-      ) 
+      // StoreModule.forRoot(//here we tell to ngrx which reducers we have in our application
+      //   {
+      //     shoppingList: shoppingListReducer,
+      //     auth: authReducer
+      //   }
+      // ) 
+      StoreModule.forRoot(fromApp.appReducer)
     ],
 
   bootstrap: [AppComponent]
