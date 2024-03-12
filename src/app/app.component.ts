@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './components/auth/auth.service';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +7,8 @@ import { AuthService } from './components/auth/auth.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit{
+
+  title:string = 'Recipe Book'
 
   constructor(private authService: AuthService){}
   ngOnInit(): void {
