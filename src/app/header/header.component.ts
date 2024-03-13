@@ -5,6 +5,7 @@ import { AuthService } from '../auth/auth.service';
 import * as fromApp from '../store/app.reducer'
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
+import * as AuthActions from '../auth/store/auth.actions'
 
 @Component({
   selector: 'app-header',
@@ -25,7 +26,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   collapsed = true;
 
   ngOnInit(): void {
-    //this.userSub = this.authService.user.subscribe(
     this.userSub = this.store
       .select('auth')
       .pipe(map(authState => authState.user))
@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onLogout() {
-    this.authService.logout();
+   this.store.dispatch(new AuthActions.Logout())
   }
 
   ngOnDestroy() {

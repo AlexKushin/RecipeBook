@@ -1,21 +1,44 @@
-import { Component } from '@angular/core';
-import { NgForm, SelectMultipleControlValueAccessor } from '@angular/forms';
-import { AuthResponseData, AuthService } from './auth.service';
-import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import * as fromApp from '../store/app.reducer'
+import { Store } from '@ngrx/store';
+import * as AuthActions from './store/auth.actions'
+
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.css'
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit, OnDestroy {
 
   isLoginMode = true;
   isLoading = false;
   error: string = null;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  private storeSub: Subscription;
+
+  constructor(
+
+
+    private store: Store<fromApp.AppState>
+  ) { }
+
+
+  ngOnInit(): void {
+    this.storeSub = this.store.select('auth').subscribe(authState => {
+      this.isLoading = authState.loading;
+      this.error = authState.authError
+
+    })
+  }
+
+  ngOnDestroy(): void {
+    if (this.storeSub) {
+      this.storeSub.unsubscribe();
+    }
+  }
 
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
@@ -27,31 +50,20 @@ export class AuthComponent {
     }
     const email = authForm.value.email;
     const password = authForm.value.password;
-    let authObs: Observable <AuthResponseData>;
+
 
     this.isLoading = true;
     if (this.isLoginMode) {
-      authObs = this.authService.login(email, password);
+      this.store.dispatch(new AuthActions.LoginStart(
+        { email: email, password: password }))
     } else {
-      authObs = this.authService.signUp(email, password);
+      this.store.dispatch(new AuthActions.SignupStart(
+        { email: email, password: password }))
     }
-    authObs.subscribe(responseData => {     
-      console.log(responseData)
-      this.isLoading = false;
-      this.router.navigate(['/recipes'])
-    },
-      errorMessage => {
-        console.log(errorMessage);
-        this.error = errorMessage;
-        this.isLoading = false;
-      });
-
-
     authForm.reset();
   }
 
-  handleError(){
-    this.error = null;
+  handleError() {
+    this.store.dispatch(new AuthActions.ClearError());
   }
-
 }
