@@ -1,4 +1,3 @@
-import { Action } from "@ngrx/store";
 import { Ingredient } from "../../shared/ingredient.model";
 import * as ShoppingListActions from "./shopping-list.actions";
 
@@ -71,6 +70,8 @@ export function shoppingListReducer(
                 editedIngredient: null,
                 editedIngredientIndex: -1}
         default:
+            console.log('ShList reducer default')
+            console.log('Whenever we call method dispatch() of any reducer it calls all reducers')
             return state;
     }
 }

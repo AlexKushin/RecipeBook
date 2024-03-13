@@ -1,6 +1,6 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest } from '@angular/common/http';
+import {  HttpHandler, HttpInterceptor, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, exhaustMap } from 'rxjs';
+import {  exhaustMap } from 'rxjs';
 import { AuthService } from './auth.service';
 import { map, take } from 'rxjs/operators';
 import * as fromApp from '../store/app.reducer'
@@ -32,6 +32,4 @@ export class AuthInterceptorService implements HttpInterceptor {
     })
     );
   }
-
-
 }
