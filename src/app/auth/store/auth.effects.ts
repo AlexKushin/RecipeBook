@@ -2,7 +2,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import * as AuthActions from './auth.actions'
 import { catchError, map, switchMap, tap } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.development';
 import { of } from "rxjs";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
