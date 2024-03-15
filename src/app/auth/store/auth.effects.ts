@@ -132,7 +132,7 @@ export class AuthEffects {
                     const expirationDuration = 
                     new Date (userData._tokenExpirationDate).getTime() -
                     new Date().getTime();
-                    this.authService.setLogOutTimer(expirationDuration * 1000);
+                    this.authService.setLogOutTimer(expirationDuration);
                     return new AuthActions.AuthenticateSuccess({
                         email: loadedUser.email,
                         userId: loadedUser.id,
@@ -150,7 +150,7 @@ export class AuthEffects {
             this.actions$.pipe(
                 ofType(AuthActions.AUTHENTICATE_SUCCESS),
                 tap(() => {
-                    this.router.navigate(['/']);
+                    this.router.navigate(['/recipes']);
                 })
             ),
         { dispatch: false }
