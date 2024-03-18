@@ -33,7 +33,7 @@ export function recipeReducer(state = initialState, action: RecipesActions.Recip
             updatedRecipes[action.payload.id] = updatedRecipe;
             return {
                 ...state, // <- spread operator, to copy all the data from initial array 
-                ingredients: updatedRecipes,
+                recipes: updatedRecipes,
                 //we use ... operator to spread elements of payload instead of add array from payload as new element of existing array
 
             };

@@ -12,7 +12,7 @@ const routes: Route[] = [
     {
         path: '', component: RecipesComponent, canActivate: [AuthGuard], children:
             [
-                { path: '', component: RecipeStartComponent },
+                { path: '', component: RecipeStartComponent, resolve: [RecipesResolverService] },
                 { path: 'new', component: RecipesEditComponent },
                 { path: ':id', component: RecipeDetailsComponent, resolve: [RecipesResolverService] },
                 { path: ':id/edit', component: RecipesEditComponent, resolve: [RecipesResolverService] }
