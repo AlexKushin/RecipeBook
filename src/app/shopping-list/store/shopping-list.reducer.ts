@@ -70,8 +70,7 @@ export function shoppingListReducer(
                 editedIngredient: null,
                 editedIngredientIndex: -1}
         default:
-            console.log('ShList reducer default')
-            console.log('Whenever we call method dispatch() of any reducer it calls all reducers')
+            console.log('ShList reducer default. Whenever we call method dispatch() of any reducer it calls all reducers')
             return state;
     }
 }

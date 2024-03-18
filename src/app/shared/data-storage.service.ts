@@ -34,7 +34,6 @@ export class DataStorageService {
                         return { ...recipe, ingredients: recipe.ingredients ? recipe.ingredients : [] };
                     });
                 }), tap(recipes => {
-                    //this.recipesService.setRecipes(recipes);
                     this.store.dispatch(new RecipesActions.SetRecipes(recipes));
                 }))
 
